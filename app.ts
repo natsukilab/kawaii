@@ -3,7 +3,7 @@ import { viewEngine, dejsEngine, oakAdapter } from "https://deno.land/x/view_eng
 import staticFiles from "https://deno.land/x/static_files/mod.ts";
 import { YamlLoader } from "https://deno.land/x/yaml_loader/mod.ts";
 import { CookieJar } from "https://deno.land/x/cookies/mod.ts";
-import {FanzaAPI} from "https://deno.land/x/fanzaapi/mod.ts";
+import {FanzaAPI} from "https://deno.land/x/fanzaapi@0.0.9/mod.ts";
 
 const yamlLoader = new YamlLoader();
 const conf = await yamlLoader.parseFile("./config/default.yml");
@@ -161,7 +161,7 @@ router
                 break;
         }
     })
-    .get('/watch/:id', async (context, next) => {
+    .get('/watch/:id', async (context) => {
         //動画視聴
         var date = new Date();
         var datetime = date.getTime();
@@ -171,9 +171,10 @@ router
             cid:context.params.id
         }
         var data: string[] = await fanza.ItemList(requestOptions);
-        var mp4: string = await fanza.getMp4URL(data.result.items[0].product_id);
-        var desc: string = await fanza.getDescription(data.result.items[0].URL);
-        var sampleImg: string[] = await fanza.getSampleImage(data.result.items[0].URL);
+        var url: string = data.result.items[0].URL;
+        var mp4: string = await fanza.getMp4URL(context.params.id);
+        var desc: string = await fanza.getDescription(url);
+        var sampleImg: string[] = await fanza.getSampleImage(url);
         context.render('watch.ejs',{
             video:data.result,
             datetime:datetime,

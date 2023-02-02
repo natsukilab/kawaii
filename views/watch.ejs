@@ -30,8 +30,6 @@
 <meta name = "twitter:player:width" content = "640" />
 <meta name = "twitter:player:height" content = "360" />
 <meta name = "twitter:image" content = "<%= video.items[0].imageURL.large %>" />
-<!--tw-->
-<link rel="stylesheet" href="/social-icon/style.css">
 <style>
 .plyr__progress{
 position:relative;
@@ -57,7 +55,7 @@ z-index:100;
 <% if(mp4 !== null){ %>
 <div class="grid1">
 <div class="vui-player">
-<video id="player" playsinline controls crossorigin="anonymous" style="--plyr-color-main:#e95295;" poster="<%= video.items[0].imageURL.large %>">
+<video id="player" playsinline controls style="--plyr-color-main:#e95295;" poster="<%= video.items[0].imageURL.large %>">
 <source src="<%= mp4 %>" type="video/mp4" />
 </video>
 <div class="vui-player-ad">
@@ -159,25 +157,6 @@ FANZAの購入ページへ移動します
 <%- await include('./views/commons/footer.ejs') %>
 <script>
 const player = new Plyr('#player');
-var video = document.createElement("video");
-video.src="<%= mp4 %>"; // 動的に生成した動画のURL
-video.setAttribute("controls","");
-video.setAttribute("class","vui-video")
-$(".plyr__progress").prepend(video);
-$(".vui-video").fadeOut();
-
-$(".plyr__progress input[type=range]").mousemove(function(e){
-$(".vui-video").fadeIn();
-var num1 = e.offsetX;
-var num2 = $(".plyr__progress input[type=range]").width();
-var num3 = player.duration;
-video.currentTime = num3 *(num1 / num2);
-$(".vui-video").css("left",((num1/num2)*100)+"%")
-})
-$(".plyr__progress input[type=range]").mouseout(function(e){
-$(".vui-video").fadeOut();
-})
-
 player.on("ended",() => {
 $(".vui-player-ad").fadeIn().css('display','flex');
 })
