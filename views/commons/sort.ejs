@@ -1,0 +1,27 @@
+<div class="vui-search-sort">
+<form class="vui-search" action="/search" method="GET">
+<input type="text" name="q" placeholder="検索キーワードを入力してください" value="<%= query %>">
+<button type="submit"><span class="material-icons">search</span></button>
+</form>
+<select class="vui-sort" id="sort">
+<option value="rank"<% if(sort == 'rank'){ %> selected<% } %>>人気順</option>
+<option value="price"<% if(sort == 'price'){ %> selected<% } %>>価格が高い順</option>
+<option value="-price"<% if(sort == '-price'){ %> selected<% } %>>価格が安い順</option>
+<option value="date"<% if(sort == 'date'){ %> selected<% } %>>新着</option>
+<option value="review"<% if(sort == 'review'){ %> selected<% } %>>評価</option>
+<option value="match"<% if(sort == 'match'){ %> selected<% } %>>マッチング順</option>
+</select>
+<script>
+$("#sort").change(function(){
+<% if(path == "home"){ %>
+location.href = "/?sort="+$("#sort").val();
+<% }else if(path.match(/category\//)){ %>
+location.href = "/category/<%= category %>/?sort="+$("#sort").val();
+<% }else if(path == "maker"){ %>
+location.href = "/maker/<%= makerid %>/?sort="+$("#sort").val();
+<% }else if(path == "search"){ %>
+location.href = "/search?q=<%= query %>&sort="+$("#sort").val();
+<% } %>
+})
+</script>
+</div>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width,initial-scale=1,shrink-to-fit=no,user-scalable=no,viewport-fit=cover">
+<%- await include('./views/commons/favicons.ejs') %>
+<% if(conf.app.name === null){ %>
+<title>ホーム - <%= serverData.app.name %></title>
+<% }else{ %>
+<title>ホーム - <%= conf.app.name %></title>
+<% } %>
+<script src="https://code.jquery.com/jquery-3.6.3.min.js" integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<link rel="stylesheet" href="/css/vui-main.css">
+<link rel="stylesheet" href="/css/small.css" media="screen and (max-width:874px)">
+<link rel="stylesheet" href="/css/medium.css" media="screen and (min-width:875px) and (max-width:1349px)">
+<link rel="stylesheet" href="/css/wide.css" media="screen and (min-width:1350px)">
+<!--twitter-->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@natsukilab">
+<meta name="twitter:title" content="<%= conf.app.name %>">
+<meta name="twitter:description" content="お気に入りのJKジャンルのエッチな作品を探しませんか？">
+<meta name="twitter:image" content="<%= conf.app.url %>images/ogp.jpg">
+</head>
+<body>
+<%- await include('./views/commons/header.ejs',{path:'home',title:'ホーム',conf:conf}) %>
+<%- await include('./views/commons/sidebar.ejs',{path:'home',conf:conf,serverData:serverData}) %>
+<div class="vui-main">
+<%- await include('./views/commons/sort.ejs',{path:'home',query:query,sort:sort}) %>
+<div class="vui-videos">
+<% videos.items.forEach(function(video){ %>
+<a href="/watch/<%= video.product_id %>" class="vui-video-image">
+<img src="<%= video.imageURL.large %>">
+</a>
+<% }) %>
+</div>
+<%- await include('./views/commons/nav.ejs',{path:'home',max_page:max_page,page:page,sort:sort}) %>
+<div class="vui-divider"></div>
+<%- await include('./views/commons/ads.ejs') %>
+</div>
+<%- await include('./views/commons/footer.ejs') %>
+<script>
+if ('serviceWorker' in navigator) {
+navigator.serviceWorker.register('/sw.js').then(function(registration) {
+console.log('ServiceWorker registration successful with scope: ', registration.scope);
+}).catch(function(err) {
+console.log('ServiceWorker registration failed: ', err);
+});
+}
+</script>
+</body>
+</html>

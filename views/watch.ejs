@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width,initial-scale=1,shrink-to-fit=no,user-scalable=no,viewport-fit=cover">
+<%- await include('./views/commons/favicons.ejs') %>
+<% if(conf.app.name === null){ %>
+<title><%= video.items[0].title %> - <%= serverData.app.name %></title>
+<% }else{ %>
+<title><%= video.items[0].title %> - <%= conf.app.name %></title>
+<% } %>
+<script src="https://code.jquery.com/jquery-3.6.3.min.js" integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/js/lightbox.min.js" integrity="sha512-k2GFCTbp9rQU412BStrcD/rlwv1PYec9SNrkbQlo6RZCf75l6KcC3UwDY8H5n5hl4v77IDtIPwOk9Dqjs/mMBQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/css/lightbox.min.css" integrity="sha512-ZKX+BvQihRJPA8CROKBhDNvoc2aDMOdAlcm7TUQY+35XYtrd3yh95QOOhsPDQY9QnKE0Wqag9y38OIgEvb88cA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<script src="https://kit.fontawesome.com/c0755961a2.js" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/plyr/3.7.3/plyr.min.js" integrity="sha512-vfpVlxMY9ryJFidrwKK2Nus5vQ5vGilRCjImLBYj3uoAz75crnSKM7zC3jFcmtCI7u58d9Cp0mEZmWwidm9xsg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/plyr/3.7.3/plyr.min.css" integrity="sha512-6Ri9OxVS85G/DRlnwVIggHm8n738xZ5DuosGQywWa838o8TCojyxGl16C+JmhiHcWl3YjPnN6d6GwY0a0/S5jA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<link rel="stylesheet" href="/css/vui-main.css">
+<link rel="stylesheet" href="/css/small.css" media="screen and (max-width:874px)">
+<link rel="stylesheet" href="/css/medium.css" media="screen and (min-width:875px) and (max-width:1350px)">
+<link rel="stylesheet" href="/css/wide.css" media="screen and (min-width:1350px)">
+<!--tw-->
+<meta name = "twitter:card" content = "player" />
+<meta name = "twitter:title" content = "<%= video.items[0].title %> - <%= serverData.app.name %>" />
+<meta name = "twitter:site" content = "@natsukilab">
+<meta name = "twitter:description" content = "" />
+<meta name = "twitter:player" content = "<%= conf.app.url %>player/<%= video.items[0].product_id %>" />
+<meta name = "twitter:player:width" content = "640" />
+<meta name = "twitter:player:height" content = "360" />
+<meta name = "twitter:image" content = "<%= video.items[0].imageURL.large %>" />
+<!--tw-->
+<link rel="stylesheet" href="/social-icon/style.css">
+<style>
+.plyr__progress{
+position:relative;
+}
+.vui-video{
+display:none;
+position:absolute;
+bottom:20px;
+width:130px!important;
+height:77.5px !important;
+transform: translate(-50%);
+border:5px #fff solid;
+box-sizing:border-box;
+z-index:100;
+}
+</style>
+</head>
+<body>
+<%- await include('./views/commons/header.ejs',{path:"watch",title:video.items[0].title,conf:conf,serverData:serverData}) %>
+<%- await include('./views/commons/sidebar.ejs',{path:"watch",conf:conf,serverData:serverData}) %>
+<div class="vui-watch-main">
+<div class="vui-player-grid">
+<% if(mp4 !== null){ %>
+<div class="grid1">
+<div class="vui-player">
+<video id="player" playsinline controls crossorigin="anonymous" style="--plyr-color-main:#e95295;" poster="<%= video.items[0].imageURL.large %>">
+<source src="<%= mp4 %>" type="video/mp4" />
+</video>
+<div class="vui-player-ad">
+<div class="ad">
+<div class="box1">
+<img class="poster-image" src="<%= video.items[0].imageURL.large %>">
+</div>
+<div class="box2">
+<a class="vui-button fluid" href="<%= video.items[0].affiliateURL %>" target="_blank">
+<span class="material-icons">shopping_cart</span>
+この動画作品のご購入はコチラ
+</a>
+<span class="ad-btn-desc">
+FANZAの購入ページへ移動します
+</span>
+</div>
+<div class="close-btn">
+<span class="material-icons">close</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<% }else{ %>
+<div class="grid1">
+<div class="vui-player" style="background-image:url('<%= video.items[0].imageURL.large %>');background-repeat:no-repeat;background-size:cover;background-position:center">
+<div style="background-color:rgba(0,0,0,0.9);color:#fff;font-size:16px;width:100%;height:100%;padding:0px;margin:0px;position:absolute;top:0;left:0;display:flex;justify-content:center;align-items:center;">
+この動画作品にサンプル動画はありません
+</div>
+</div>
+</div>
+<% } %>
+<div class="grid2">
+<h1 class="vui-player-title"><%= video.items[0].title %></h1>
+<div class="vui-player-description">
+<span class="title">
+<span class="material-icons">info</span>
+作品紹介
+</span>
+<%- desc %>
+</div>
+<div class="vui-player-description">
+<span class="title">
+<span class="material-icons">play_circle_filled</span>
+再生時間
+</span>
+<p style="padding:0px;margin:0px;">この動画作品の再生時間は <b><%- video.items[0].volume %></b> です</p>
+</div>
+<div class="vui-player-description">
+<span class="title">
+<span class="material-icons">info</span>
+メーカー
+</span>
+<a class="vui-button" href="/maker/<%- video.items[0].iteminfo.maker[0].id%>"><%- video.items[0].iteminfo.maker[0].name%></a>
+</div>
+<div class="vui-thumbnails-box">
+<span class="title">
+<span class="material-icons">collections</span>
+サンプル画像
+</span>
+<div class="vui-thumbnails">
+<% if(sampleImg.length > 0){ %>
+<% sampleImg.forEach(function(thumbnail){ %>
+<a class="thumbnail" href="<%= thumbnail.replace('js-','jp-') %>" data-lightbox="image-1" data-title="<%= video.items[0].title %>">
+<img src="<%= thumbnail %>">
+</a>
+<% }) %>
+<% }else{ %>
+<p>サンプル画像はありません。</p>
+<% } %>
+</div>
+</div>
+<div class="vui-social">
+<a href="https://twitter.com/share?text=<%= video.items[0].title %>&amp;url=<%= conf.app.url %>watch/<%= video.items[0].product_id %>" target="_blank" class="button twitter">
+<i class="fa-brands fa-twitter vui-icon fa-2x"></i>
+</a>
+<a href="https://social-plugins.line.me/lineit/share?url=<%= conf.app.url %>watch/<%= video.items[0].product_id %>" target="_blank" class="button line">
+<i class="fa-brands fa-line vui-icon fa-2x"></i>
+</a> 
+<a href="http://b.hatena.ne.jp/entry/<%= conf.app.url %>watch/<%= video.items[0].product_id %>" target="_blank" class="button hatena">
+<span class="icon-hatenabookmark"></span>
+</a>
+</div>
+<div class="vui-divider"></div>
+<div class="vui-player-shopping">
+<a href="<%= video.items[0].affiliateURL %>" target="_blank" class="vui-button">
+<span class="material-icons">shopping_cart</span>
+この動画作品のご購入はコチラ
+</a>
+<span class="vui-player-shopping-desc">
+FANZAの購入ページへ移動します
+</span>
+</div>
+<div class="vui-divider"></div>
+<%- await include('./views/commons/ads.ejs') %>
+</div>
+</div>
+</div>
+<%- await include('./views/commons/footer.ejs') %>
+<script>
+const player = new Plyr('#player');
+var video = document.createElement("video");
+video.src="<%= mp4 %>"; // 動的に生成した動画のURL
+video.setAttribute("controls","");
+video.setAttribute("class","vui-video")
+$(".plyr__progress").prepend(video);
+$(".vui-video").fadeOut();
+
+$(".plyr__progress input[type=range]").mousemove(function(e){
+$(".vui-video").fadeIn();
+var num1 = e.offsetX;
+var num2 = $(".plyr__progress input[type=range]").width();
+var num3 = player.duration;
+video.currentTime = num3 *(num1 / num2);
+$(".vui-video").css("left",((num1/num2)*100)+"%")
+})
+$(".plyr__progress input[type=range]").mouseout(function(e){
+$(".vui-video").fadeOut();
+})
+
+player.on("ended",() => {
+$(".vui-player-ad").fadeIn().css('display','flex');
+})
+$(".vui-player-ad .ad .close-btn").click(() => {
+$(".vui-player-ad").fadeOut();
+})
+function muuXY(e, that) {
+if (!e) e = window.event;
+var x, y;
+if (e.targetTouches) {
+x = e.targetTouches[0].pageX - e.target.offsetLeft;
+y = e.targetTouches[0].pageY - e.target.offsetTop;
+}else if (that){
+x = e.pageX - that.offsetLeft;
+y = e.pageY - that.offsetTop;
+}
+return [x,y];
+}
+</script>
+<script>
+if ('serviceWorker' in navigator) {
+navigator.serviceWorker.register('/sw.js').then(function(registration) {
+console.log('ServiceWorker registration successful with scope: ', registration.scope);
+}).catch(function(err) {
+console.log('ServiceWorker registration failed: ', err);
+});
+}
+</script>
+</body>
+</html>

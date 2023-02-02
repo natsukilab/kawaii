@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/plyr/3.7.3/plyr.min.js" integrity="sha512-vfpVlxMY9ryJFidrwKK2Nus5vQ5vGilRCjImLBYj3uoAz75crnSKM7zC3jFcmtCI7u58d9Cp0mEZmWwidm9xsg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/plyr/3.7.3/plyr.min.css" integrity="sha512-6Ri9OxVS85G/DRlnwVIggHm8n738xZ5DuosGQywWa838o8TCojyxGl16C+JmhiHcWl3YjPnN6d6GwY0a0/S5jA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<style>
+html,body{
+    width:100%;
+    height:100%;
+    padding:0px;
+    margin:0px;
+}
+.plyr{
+    width:100%;
+    height:100%;
+    vertical-align:bottom;
+    padding:0px;
+    margin:0px;
+}
+</style>
+</head>
+<body>
+<video id="player" playsinline controls crossorigin="anonymous" style="--plyr-color-main:#e95295;" poster="<%= video.items[0].imageURL.large %>">
+<source src="<%= mp4 %>" type="video/mp4" />
+</video>
+<script>
+const player = new Plyr('#player');
+</script>
+</body>
+</html>

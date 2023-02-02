@@ -1,0 +1,31 @@
+<div class="vui-header">
+<div class="vui-group">
+<div class="item">
+<div class="vui-header-icon vui-wide-display-none menu-btn">
+<span class="material-icons">menu</span>
+</div>
+</div>
+<div class="item vui-wide-margin-left-0 vui-small-display-none">
+<!--
+<div class="vui-header-logo">
+<img src="images/logo-title.png">
+</div>
+-->
+<% if(conf.app.name === null){ %>
+<%= serverData.app.name %>
+<% }else{ %>
+<%= conf.app.name %>
+<% } %>
+</div>
+</div>
+<div class="vui-group vui-medium-display-none vui-wide-display-none">
+<div class="item title">
+<%= title %>
+</div>
+</div>
+<div class="vui-group">
+<div class="item vui-header-icon">
+<span class="material-icons"></span>
+</div>
+</div>
+</div>

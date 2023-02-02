@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width,initial-scale=1,shrink-to-fit=no,user-scalable=no,viewport-fit=cover">
+<%- await include('views/commons/favicons.ejs') %>
+<% if(conf.app.name === null){ %>
+<title>年齢確認 - <%= serverData.app.name %></title>
+<% }else{ %>
+<title>年齢確認 - <%= conf.app.name %></title>
+<% } %>
+<script src="https://code.jquery.com/jquery-3.6.3.min.js" integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<link rel="stylesheet" href="/css/vui-main.css">
+<link rel="stylesheet" href="/css/small.css" media="screen and (max-width:874px)">
+<link rel="stylesheet" href="/css/medium.css" media="screen and (min-width:875px) and (max-width:1349px)">
+<link rel="stylesheet" href="/css/wide.css" media="screen and (min-width:1350px)">
+<script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
+<!--twitter-->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@natsukilab">
+<meta name="twitter:title" content="<%= conf.app.name %>">
+<meta name="twitter:description" content="お気に入りの動画作品を探しませんか？">
+<meta name="twitter:image" content="<%= conf.app.url %>images/ogp.jpg">
+<style>
+html,body{
+width:100%;
+height:100%;
+padding:0px;
+margin:0px;
+}
+</style>
+</head>
+<body>
+<div class="vui-age-main">
+<h1>年齢の確認</h1>
+<p>
+当サイトはアダルトコンテンツを含んでいます。<br/>
+あなたは18歳以上ですか？<br/>
+（This site contains adult content. Are you above 18 years old?）
+</p>
+<div class="vui-grid mt" style="width:300px;">
+<div class="six-column">
+<button class="vui-button fluid age_btn" data-age="yes">YES</button>
+</div>
+<div class="six-column">
+<button class="vui-button fluid age_btn" data-age="no">NO</button>
+</div>
+</div>
+<p class="mt">
+&copy; 2022 <%= conf.app.name %>
+</p>
+</div>
+<script>
+$(".age_btn").click(function(){
+var age = $(this).data("age");
+if(age == "yes"){
+Cookies.set('agecheck', 'yes', {expires: 1/4});
+location.reload();
+}else if(age == "no"){
+location.href="https://www.google.co.jp";
+}
+})
+if ('serviceWorker' in navigator) {
+navigator.serviceWorker.register('/sw.js').then(function(registration) {
+console.log('ServiceWorker registration successful with scope: ', registration.scope);
+}).catch(function(err) {
+console.log('ServiceWorker registration failed: ', err);
+});
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,8 @@
+app:
+    url: 'https://example.ltd/'
+    name: 'KAWAII'
+#DMMウェブサービスのAPIアクセス情報
+api:
+    appid: ''
+    agentid: ''
+    bannerid: '01'
