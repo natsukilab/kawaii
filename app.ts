@@ -34,11 +34,11 @@ router
         var cookies = new CookieJar(context.request, context.response);
         switch(cookies.get("agecheck")){
             case 'yes':
-                var sort:string = context.request.url.searchParams.get('sort');
+                var sort: string = context.request.url.searchParams.get('sort');
                 if(sort == undefined){
                     sort = 'rank';
                 }
-                var requestOptions:string[] = {
+                var requestOptions: string[] = {
                     site:'FANZA',
                     service:'digital',
                     floor:'videoc',
@@ -49,19 +49,19 @@ router
                     offset:1,
                     lte_date:isoStr.slice( 0, 19 ),
                 }
-                var data:string[] = await fanza.ItemList(requestOptions);
-                var hits:number = data.result.result_count;
-                var count:number = data.result.total_count;
-                var max_page:number = Math.ceil(count / hits);
-                var page:number;
+                var data: string[] = await fanza.ItemList(requestOptions);
+                var hits: number = data.result.result_count;
+                var count: number = data.result.total_count;
+                var max_page: number = Math.ceil(count / hits);
+                var page: number;
                 if(context.request.url.searchParams.get('page') !== null){
                     page = context.request.url.searchParams.get('page');
                 }else{
                     page = 1;
                 }
                 if(page <= max_page){
-                    var offset:number = ((page - 1)*40) + 1;
-                    var requestOptions2:string[] = {
+                    var offset: number = ((page - 1)*40) + 1;
+                    var requestOptions2: string[] = {
                         site:'FANZA',
                         service:'digital',
                         floor:'videoc',
@@ -72,7 +72,7 @@ router
                         offset:offset,
                         lte_date:isoStr.slice( 0, 19 ),
                     }
-                    var data2:string[] = await fanza.ItemList(requestOptions2);
+                    var data2: string[] = await fanza.ItemList(requestOptions2);
                     context.render("index.ejs",
                     {
                         videos: data2.result,
@@ -99,11 +99,11 @@ router
         switch(cookies.get("agecheck")){
             case 'yes':
                 if(context.request.url.searchParams.get('q') !== null){
-                    var sort:string = context.request.url.searchParams.get('sort');
+                    var sort: string = context.request.url.searchParams.get('sort');
                     if(sort == undefined){
                         sort = 'rank';
                     }
-                    var requestOptions:string[] = {
+                    var requestOptions: string[] = {
                         site:'FANZA',
                         service:'digital',
                         floor:'videoc',
@@ -115,19 +115,19 @@ router
                         lte_date:isoStr.slice( 0, 19 ),
                         keyword:encodeURI(context.request.url.searchParams.get('q'))
                     }
-                    var data:string[] = await fanza.ItemList(requestOptions);
-                    var hits:number = data.result.result_count;
-                    var count:number = data.result.total_count;
-                    var max_page:number = Math.ceil(count / hits);
-                    var page:number;
+                    var data: string[] = await fanza.ItemList(requestOptions);
+                    var hits: number = data.result.result_count;
+                    var count: number = data.result.total_count;
+                    var max_page: number = Math.ceil(count / hits);
+                    var page: number;
                     if(context.request.url.searchParams.get('page') !== null){
                         page = context.request.url.searchParams.get('page');
                     }else{
                         page = 1;
                     }
                     if(page <= max_page){
-                        var offset:number = ((page - 1)*40) + 1;
-                        var requestOptions2:string[] = {
+                        var offset: number = ((page - 1)*40) + 1;
+                        var requestOptions2: string[] = {
                             site:'FANZA',
                             service:'digital',
                             floor:'videoc',
@@ -139,7 +139,7 @@ router
                             lte_date:isoStr.slice( 0, 19 ),
                             keyword:encodeURI(context.request.url.searchParams.get('q'))
                         }
-                        var data2:string[] = await fanza.ItemList(requestOptions2);
+                        var data2: string[] = await fanza.ItemList(requestOptions2);
                         context.render('search.ejs',
                             {
                                 videos: data2.result,
@@ -165,15 +165,15 @@ router
         //動画視聴
         var date = new Date();
         var datetime = date.getTime();
-        var requestOptions = {
+        var requestOptions: string[] = {
             site:'FANZA',
             service:'digital',
             cid:context.params.id
         }
-        var data = await fanza.ItemList(requestOptions);
-        var mp4 = await fanza.getMp4URL(data.result.items[0].product_id);
-        var desc = await fanza.getDescription(data.result.items[0].URL);
-        var sampleImg = await fanza.getSampleImage(data.result.items[0].URL);
+        var data: string[] = await fanza.ItemList(requestOptions);
+        var mp4: string = await fanza.getMp4URL(data.result.items[0].product_id);
+        var desc: string = await fanza.getDescription(data.result.items[0].URL);
+        var sampleImg: string[] = await fanza.getSampleImage(data.result.items[0].URL);
         context.render('watch.ejs',{
             video:data.result,
             datetime:datetime,
@@ -190,13 +190,13 @@ router
         //プレイヤー
         var date = new Date();
         var datetime = date.getTime();
-        var requestOptions = {
+        var requestOptions: string[] = {
             site:'FANZA',
             service:'digital',
             cid:context.params.id
         }
-        var data = await fanza.ItemList(requestOptions);
-        var mp4 = await fanza.getMp4URL(data.result.items[0].product_id);
+        var data: string[] = await fanza.ItemList(requestOptions);
+        var mp4: string = await fanza.getMp4URL(data.result.items[0].product_id);
         context.render('player.ejs',{
             video:data.result,
             mp4:mp4,
@@ -212,11 +212,11 @@ router
         var cookies = new CookieJar(context.request, context.response);
         switch(cookies.get("agecheck")){
             case 'yes':
-                var sort = context.request.url.searchParams.get('sort');
+                var sort: string = context.request.url.searchParams.get('sort');
                 if(sort == undefined){
                     sort = 'rank';
                 }
-                var requestOptions = {
+                var requestOptions: string[] = {
                     site:'FANZA',
                     service:'digital',
                     floor:'videoc',
@@ -227,10 +227,10 @@ router
                     offset:1,
                     lte_date:isoStr.slice( 0, 19 )
                 }
-                var data = await fanza.ItemList(requestOptions);
-                var hits = data.result.result_count;
-                var count = data.result.total_count;
-                var max_page = Math.ceil(count / hits);
+                var data: string[] = await fanza.ItemList(requestOptions);
+                var hits: number = data.result.result_count;
+                var count: number = data.result.total_count;
+                var max_page: number = Math.ceil(count / hits);
                 var page:number;
                 if(context.request.url.searchParams.get('page') !== null){
                     page = context.request.url.searchParams.get('page');
@@ -238,8 +238,8 @@ router
                     page = 1;
                 }
                 if(page <= max_page){
-                    var offset = ((page - 1)*40) + 1;
-                    var requestOptions2 = {
+                    var offset: number = ((page - 1)*40) + 1;
+                    var requestOptions2: string[] = {
                         site:'FANZA',
                         service:'digital',
                         floor:'videoc',
@@ -250,7 +250,7 @@ router
                         offset:offset,
                         lte_date:isoStr.slice( 0, 19 )
                     }
-                    var data2 = await fanza.ItemList(requestOptions2);
+                    var data2: string[] = await fanza.ItemList(requestOptions2);
                     context.render('maker.ejs',
                         {
                             videos: data2.result,
@@ -278,11 +278,11 @@ router
         var cookies = new CookieJar(context.request, context.response);
         switch(cookies.get("agecheck")){
             case 'yes':
-                var sort = context.request.url.searchParams.get('sort');
+                var sort: string = context.request.url.searchParams.get('sort');
                 if(sort == undefined){
                     sort = 'rank';
                 }
-                var requestOptions = {
+                var requestOptions: string[] = {
                     site:'FANZA',
                     service:'digital',
                     floor:'videoc',
@@ -294,10 +294,10 @@ router
                     lte_date:isoStr.slice( 0, 19 ),
                     keyword:encodeURI(context.params.category)
                 }
-                var data = await fanza.ItemList(requestOptions);
-                var hits = data.result.result_count;
-                var count = data.result.total_count;
-                var max_page = Math.ceil(count / hits);
+                var data: string[] = await fanza.ItemList(requestOptions);
+                var hits: number = data.result.result_count;
+                var count: number = data.result.total_count;
+                var max_page: number = Math.ceil(count / hits);
                 var page:number;
                 if(context.request.url.searchParams.get('page') !== null){
                     page = context.request.url.searchParams.get('page');
@@ -305,8 +305,8 @@ router
                     page = 1;
                 }
                 if(page <= max_page){
-                    var offset = ((page - 1)*40) + 1;
-                    var requestOptions2 = {
+                    var offset: number = ((page - 1)*40) + 1;
+                    var requestOptions2: string[] = {
                         site:'FANZA',
                         service:'digital',
                         floor:'videoc',
@@ -318,7 +318,7 @@ router
                         lte_date:isoStr.slice( 0, 19 ),
                         keyword:encodeURI(context.params.category)
                     }
-                    var data2 = await fanza.ItemList(requestOptions2);
+                    var data2: string[] = await fanza.ItemList(requestOptions2);
                     context.render('category.ejs',
                         {
                             videos: data2.result,
