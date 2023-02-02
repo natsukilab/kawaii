@@ -3,6 +3,8 @@ kawaiiはDMMウェブサービスを利用したアダルトアフィリエイ�
 
 構築環境は Deno + oak + view_engine + dejs です。
 
+![Fn77Lf6akAA5Uz1](https://user-images.githubusercontent.com/79701376/216239253-54b6773f-8462-4815-9ca5-c48e2f4f2e3b.jpg)
+
 # deno-fanzaapi
 Deno環境でFANZAのDMMウェブサービスを利用するためのパッケージを作成しました。
 https://deno.land/x/fanzaapi@0.0.6
