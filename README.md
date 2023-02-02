@@ -7,7 +7,7 @@ deno run --allow-net --allow-read app.ts
 
 # deno-fanzaapi
 Deno環境でFANZAのDMMウェブサービスを利用するためのパッケージを作成しました。
-https://deno.land/x/fanzaapi@0.0.6
+https://deno.land/x/fanzaapi
 ```js
 import {FanzaAPI} from "https://deno.land/x/fanzaapi/mod.ts";
 var api = {
