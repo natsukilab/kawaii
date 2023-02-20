@@ -40,25 +40,25 @@
 <a></a>
 <% } %>
 <% }else if ( path.match(/maker\//)) { %>
-    <% if(page > 1){ %>
-    <a class="item" href="/<%= path %>?sort=<%= sort %>&page=<%= Number(page) - 1 %>">
-    <span class="material-icons left-icon">arrow_back</span>
-    </a>
-    <% }if(max_page < 11){ for(i = 1;i <= max_page;i++){ %>
-    <a href="/<%= path %>?sort=<%= sort %>&page=<%= i %>" class="item<% if(i == page){ %> active<% } %>"><%= i %></a>
-    <% }}else{if(page < 5){for(i = 1;i <= 10;i++){ %>
-    <a href="/<%= path %>?sort=<%= sort %>&page=<%= i %>" class="item<% if(i == page){ %> active<% } %>"><%= i %></a>
-    <% }}else if((Number(page) + 5) >= max_page){var _page1 = (Number(max_page) - 9);var _page2 = max_page;for(var i = _page1;i <= _page2;i++){ %>
-    <a href="/<%= path %>?sort=<%= sort %>&page=<%= i %>" class="item<% if(i == page){ %> active<% } %>"><%= i %></a>
-    <% }}else{var _page1 = (Number(page) - 4);var _page2 = (Number(page) + 5);for(var i = _page1;i <= _page2;i++){ %>
-    <a href="/<%= path %>?sort=<%= sort %>&page=<%= i %>" class="item<% if(i == page){ %> active<% } %>"><%= i %></a>
-    <% }}}if(page < max_page){var next_page = page + 1; %>
-    <a class="item" href="/<%= path %>?sort=<%= sort %>&page=<%= Number(page) + 1 %>">
-    <span class="material-icons right-icon">arrow_forward</span>
-    </a>
-    <% }else{ %>
-    <a></a>
-    <% } %>
+<% if(page > 1){ %>
+<a class="item" href="/<%= path %>?sort=<%= sort %>&page=<%= Number(page) - 1 %>">
+<span class="material-icons left-icon">arrow_back</span>
+</a>
+<% }if(max_page < 11){ for(i = 1;i <= max_page;i++){ %>
+<a href="/<%= path %>?sort=<%= sort %>&page=<%= i %>" class="item<% if(i == page){ %> active<% } %>"><%= i %></a>
+<% }}else{if(page < 5){for(i = 1;i <= 10;i++){ %>
+<a href="/<%= path %>?sort=<%= sort %>&page=<%= i %>" class="item<% if(i == page){ %> active<% } %>"><%= i %></a>
+<% }}else if((Number(page) + 5) >= max_page){var _page1 = (Number(max_page) - 9);var _page2 = max_page;for(var i = _page1;i <= _page2;i++){ %>
+<a href="/<%= path %>?sort=<%= sort %>&page=<%= i %>" class="item<% if(i == page){ %> active<% } %>"><%= i %></a>
+<% }}else{var _page1 = (Number(page) - 4);var _page2 = (Number(page) + 5);for(var i = _page1;i <= _page2;i++){ %>
+<a href="/<%= path %>?sort=<%= sort %>&page=<%= i %>" class="item<% if(i == page){ %> active<% } %>"><%= i %></a>
+<% }}}if(page < max_page){var next_page = page + 1; %>
+<a class="item" href="/<%= path %>?sort=<%= sort %>&page=<%= Number(page) + 1 %>">
+<span class="material-icons right-icon">arrow_forward</span>
+</a>
+<% }else{ %>
+<a></a>
+<% } %>
 <% }else if(path === 'search'){ %>
 <% if(page > 1){ %>
 <a class="item" href="/<%= path %>?q=<%= query %>&sort=<%= sort %>&page=<%= Number(page) - 1 %>">

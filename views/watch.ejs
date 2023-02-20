@@ -21,6 +21,7 @@
 <link rel="stylesheet" href="/css/small.css" media="screen and (max-width:874px)">
 <link rel="stylesheet" href="/css/medium.css" media="screen and (min-width:875px) and (max-width:1350px)">
 <link rel="stylesheet" href="/css/wide.css" media="screen and (min-width:1350px)">
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <!--tw-->
 <meta name = "twitter:card" content = "player" />
 <meta name = "twitter:title" content = "<%= video.items[0].title %> - <%= serverData.app.name %>" />
@@ -157,6 +158,13 @@ FANZAの購入ページへ移動します
 <%- await include('./views/commons/footer.ejs') %>
 <script>
 const player = new Plyr('#player');
+$.get('<%= mp4 %>').fail(() => {
+Swal.fire({
+icon: 'error',
+title: 'ERROR',
+text: 'この作品にはサンプル動画が存在しません。'
+})
+})
 player.on("ended",() => {
 $(".vui-player-ad").fadeIn().css('display','flex');
 })
