@@ -21,6 +21,9 @@ api:
     apiid: '' #Your ApiID
     affiliateid: '' #Your AffiliateID
 ```
+```sh
+deno run --allow-net --allow-read app.ts
+```
 
 # deno-fanzaapi
 I created a package for using FANZA's DMM web service in the Deno environment.
