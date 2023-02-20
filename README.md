@@ -18,8 +18,8 @@ app:
     name: 'KAWAII' #Your app name
 #FANZA API access information
 api:
-    apiid: 'bNKvmKPuTDunaEwC6GAP' #Your ApiID
-    affiliateid: 'utamita-992' #Your AffiliateID
+    apiid: '' #Your ApiID
+    affiliateid: '' #Your AffiliateID
 ```
 
 # deno-fanzaapi
