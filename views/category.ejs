@@ -11,7 +11,7 @@
 <title><%= category %> - <%= conf.app.name %></title>
 <% } %>
 <script src="https://code.jquery.com/jquery-3.6.3.min.js" integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
-<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet">
 <link rel="stylesheet" href="/css/vui-main.css?d=<%= datetime %>">
 <link rel="stylesheet" href="/css/small.css?d=<%= datetime %>" media="screen and (max-width:874px)">
 <link rel="stylesheet" href="/css/medium.css?d=<%= datetime %>" media="screen and (min-width:875px) and (max-width:1349px)">
@@ -34,7 +34,10 @@ videos.items.forEach(function(video){
 %>
 <a href="/watch/<%= video.product_id %>" class="vui-video-image">
 <img src="<%= video.imageURL.large %>">
-<span class="vui-video-image-duration"><%= video.volume %></span>
+<span class="vui-video-image-duration">
+<span class="material-icons-outlined">shopping_cart</span>
+<%= video.volume %>
+</span>
 </a>
 <% }) %>
 </div>

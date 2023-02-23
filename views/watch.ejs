@@ -13,7 +13,7 @@
 <script src="https://code.jquery.com/jquery-3.6.3.min.js" integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/js/lightbox.min.js" integrity="sha512-k2GFCTbp9rQU412BStrcD/rlwv1PYec9SNrkbQlo6RZCf75l6KcC3UwDY8H5n5hl4v77IDtIPwOk9Dqjs/mMBQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/css/lightbox.min.css" integrity="sha512-ZKX+BvQihRJPA8CROKBhDNvoc2aDMOdAlcm7TUQY+35XYtrd3yh95QOOhsPDQY9QnKE0Wqag9y38OIgEvb88cA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet">
 <script src="https://kit.fontawesome.com/c0755961a2.js" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/plyr/3.7.3/plyr.min.js" integrity="sha512-vfpVlxMY9ryJFidrwKK2Nus5vQ5vGilRCjImLBYj3uoAz75crnSKM7zC3jFcmtCI7u58d9Cp0mEZmWwidm9xsg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/plyr/3.7.3/plyr.min.css" integrity="sha512-6Ri9OxVS85G/DRlnwVIggHm8n738xZ5DuosGQywWa838o8TCojyxGl16C+JmhiHcWl3YjPnN6d6GwY0a0/S5jA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -66,7 +66,7 @@ z-index:100;
 </div>
 <div class="box2">
 <a class="vui-button fluid" href="<%= video.items[0].affiliateURL %>" target="_blank">
-<span class="material-icons">shopping_cart</span>
+<span class="material-icons-outlined">shopping_cart</span>
 この動画作品のご購入はコチラ
 </a>
 <span class="ad-btn-desc">
@@ -74,7 +74,7 @@ FANZAの購入ページへ移動します
 </span>
 </div>
 <div class="close-btn">
-<span class="material-icons">close</span>
+<span class="material-icons-outlined">close</span>
 </div>
 </div>
 </div>
@@ -93,28 +93,28 @@ FANZAの購入ページへ移動します
 <h1 class="vui-player-title"><%= video.items[0].title %></h1>
 <div class="vui-player-description">
 <span class="title">
-<span class="material-icons">info</span>
+<span class="material-icons-outlined">info</span>
 作品紹介
 </span>
 <%- desc %>
 </div>
 <div class="vui-player-description">
 <span class="title">
-<span class="material-icons">play_circle_filled</span>
+<span class="material-icons-outlined">play_circle_filled</span>
 再生時間
 </span>
 <p style="padding:0px;margin:0px;">この動画作品の再生時間は <b><%- video.items[0].volume %></b> です</p>
 </div>
 <div class="vui-player-description">
 <span class="title">
-<span class="material-icons">info</span>
+<span class="material-icons-outlined">info</span>
 メーカー
 </span>
 <a class="vui-button" href="/maker/<%- video.items[0].iteminfo.maker[0].id%>"><%- video.items[0].iteminfo.maker[0].name%></a>
 </div>
 <div class="vui-thumbnails-box">
 <span class="title">
-<span class="material-icons">collections</span>
+<span class="material-icons-outlined">collections</span>
 サンプル画像
 </span>
 <div class="vui-thumbnails">
@@ -143,7 +143,7 @@ FANZAの購入ページへ移動します
 <div class="vui-divider"></div>
 <div class="vui-player-shopping">
 <a href="<%= video.items[0].affiliateURL %>" target="_blank" class="vui-button">
-<span class="material-icons">shopping_cart</span>
+<span class="material-icons-outlined">shopping_cart</span>
 この動画作品のご購入はコチラ
 </a>
 <span class="vui-player-shopping-desc">
