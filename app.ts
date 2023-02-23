@@ -28,6 +28,8 @@ var fanza = new FanzaAPI(api);
 router
 .get('/', async (context, next) => {
 //ホーム
+var date = new Date();
+var datetime = date.getTime();
 const dt = new Date();
 const jdt = new Date(dt.getTime() + 9 * 60 * 60 * 1000);
 const isoStr = jdt.toISOString().split('Z')[0];
@@ -81,7 +83,8 @@ page:page,
 query:'',
 sort:sort,
 conf:conf,
-serverData:serverData
+serverData:serverData,
+datetime:datetime
 });
 }
 break;
@@ -92,6 +95,8 @@ break;
 })
 .get('/search', async (context, next) => {
 //動画検索
+var date = new Date();
+var datetime = date.getTime();
 const dt = new Date();
 const jdt = new Date(dt.getTime() + 9 * 60 * 60 * 1000);
 const isoStr = jdt.toISOString().split('Z')[0];
@@ -148,7 +153,8 @@ page:page,
 query:context.request.url.searchParams.get('q'),
 sort:sort,
 conf:conf,
-serverData:serverData
+serverData:serverData,
+datetime:datetime
 }
 );
 }
@@ -202,11 +208,14 @@ context.render('player.ejs',{
 video:data.result,
 mp4:mp4,
 conf:conf,
-serverData:serverData
+serverData:serverData,
+datetime:datetime
 })
 })
 .get('/maker/:id', async (context, next) => {
 //メーカー
+var date = new Date();
+var datetime = date.getTime();
 const dt = new Date();
 const jdt = new Date(dt.getTime() + 9 * 60 * 60 * 1000);
 const isoStr = jdt.toISOString().split('Z')[0];
@@ -261,7 +270,8 @@ query:'',
 sort:sort,
 conf:conf,
 serverData:serverData,
-makerid:data2.result.items[0].iteminfo.maker[0].id
+makerid:data2.result.items[0].iteminfo.maker[0].id,
+datetime:datetime
 }
 )
 }
@@ -273,6 +283,8 @@ break;
 })
 .get('/category/:category', async (context, next) => {
 //カテゴリ
+var date = new Date();
+var datetime = date.getTime();
 const dt = new Date();
 const jdt = new Date(dt.getTime() + 9 * 60 * 60 * 1000);
 const isoStr = jdt.toISOString().split('Z')[0];
@@ -329,7 +341,8 @@ query:'',
 sort:sort,
 conf:conf,
 serverData:serverData,
-category:context.params.category
+category:context.params.category,
+datetime:datetime
 }
 );
 }
